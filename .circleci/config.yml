@@ -28,7 +28,6 @@ print_world:
            echo 'World' >> run.sh
            chmod +x run.sh
         - run: ./run.sh
-    
 workflows:
   # Name the workflow "welcome"
     
@@ -39,7 +38,7 @@ workflows:
 UdacityExample:
     #run udacity 2 jobs for Hello then world
   jobs:    
-      - print_hello
-      - print_world:
+    - print_hello
+    - print_world:
            requires:
               - print_hello
