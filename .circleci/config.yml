@@ -16,7 +16,7 @@ jobs:
            echo '#!/bin/sh' > run.sh
            echo 'Hello' >> run.sh
            chmod +x run.sh
-        - run: ./run.sh
+        - run: sh ./run.sh
     
     print_world:
       build:
@@ -27,7 +27,7 @@ jobs:
            echo '#!/bin/sh' > run.sh
            echo 'World' >> run.sh
            chmod +x run.sh
-        - run: ./run.sh
+        - run: sh ./run.sh
 
 workflows:
   # Name the workflow "welcome"
