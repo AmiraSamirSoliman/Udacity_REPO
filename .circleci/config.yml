@@ -31,13 +31,13 @@ jobs:
     Print_Env_variable:
       build:
       docker:
-        - image: circleci/node:13.8.0
+        - image: cimg/base:2020.01
       steps:
+        - checkout
         - run:
-           echo '#!/bin/sh' > run.sh
-           echo $V_Env_Name >> run.sh
-           chmod +x run.sh
-        - run: sh ./run.sh
+           command:
+            echo $V_Env_Name >> run.sh
+
 
 workflows:
   # Name the workflow "welcome"
