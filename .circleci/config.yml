@@ -28,6 +28,16 @@ jobs:
            echo 'World' >> run.sh
            chmod +x run.sh
         - run: sh ./run.sh
+    Print_Env_variable:
+      build:
+      docker:
+        - image: circleci/node:13.8.0
+      steps:
+        - run:
+           echo '#!/bin/sh' > run.sh
+           echo $V_Env_Name >> run.sh
+           chmod +x run.sh
+        - run: sh ./run.sh
 
 workflows:
   # Name the workflow "welcome"
@@ -39,3 +49,4 @@ workflows:
      - print_world:
           requires:
             - print_hello
+     - Print_Env_variable
