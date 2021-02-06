@@ -82,6 +82,15 @@ jobs:
          - run:
             command:
               echo $V_Env_Name >> run.sh
+    onfailjob:
+     docker:
+       - image: circleci/node:13.8.0
+     steps:
+      - run: return 1
+      - run:
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
            
 workflows:
   # Name the workflow "welcome"
@@ -98,7 +107,8 @@ workflows:
      # - print_output_file:
       #    requires:
           #  - save_hello_world_output
-      - print_command_printpiplineid
+      #- print_command_printpiplineid
      # - Print_Env_variable
+     - onfailjob
  
 
