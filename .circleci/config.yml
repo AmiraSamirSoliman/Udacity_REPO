@@ -29,21 +29,18 @@ jobs:
         - image: circleci/node:13.8.0  
       steps:
         - run: 
-           echo '#!/bin/sh' > run.sh
-           echo 'Hello' >> run.sh
-           chmod +x run.sh
-        - run: sh ./run.sh
-    
+           command:
+                    echo "Hello "
+         
     print_world:
       build:
       docker:
         - image: circleci/node:13.8.0  
       steps:
         - run: 
-           echo '#!/bin/sh' > run.sh
-           echo 'World' >> run.sh
-           chmod +x run.sh
-        - run: sh ./run.sh
+           command:         
+            echo "World" 
+         
 
         
     save_hello_world_output:
@@ -81,7 +78,7 @@ jobs:
          - checkout
          - run:
             command:
-              echo $V_Env_Name >> run.sh
+              echo $V_Env_Name
     onfailjob:
      docker:
        - image: circleci/node:13.8.0
@@ -99,16 +96,16 @@ workflows:
     jobs:
     # - welcome/run
 
-     #- print_hello
-    # - print_world:
-          #requires:
-            #- print_hello
+     - print_hello
+     - print_world:
+          requires:
+            - print_hello
      # - save_hello_world_output
      # - print_output_file:
       #    requires:
           #  - save_hello_world_output
       #- print_command_printpiplineid
      # - Print_Env_variable
-     - onfailjob
+     #- onfailjob
  
 
