@@ -44,6 +44,7 @@ jobs:
            echo 'World' >> run.sh
            chmod +x run.sh
         - run: sh ./run.sh
+
         
     save_hello_world_output:
        build:
@@ -72,14 +73,23 @@ jobs:
            - attach_workspace:
                at: ~/
            - run: cat ~/output.txt
+     Print_Env_variable:
+        build:
+        docker:
+         - image: cimg/base:2020.01
+       steps:
+         - checkout
+         - run:
+            command:
+              echo $V_Env_Name >> run.sh
            
-
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
     # - welcome/run
+
      #- print_hello
     # - print_world:
           #requires:
@@ -89,4 +99,6 @@ workflows:
       #    requires:
           #  - save_hello_world_output
       - print_command_printpiplineid
+     # - Print_Env_variable
  
+
