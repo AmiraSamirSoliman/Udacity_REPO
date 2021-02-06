@@ -29,11 +29,11 @@ jobs:
            chmod +x run.sh
         - run: sh ./run.sh
         
-     save_hello_world_output:
+    save_hello_world_output:
        build:
        docker:
          - image: circleci/node:13.8.0
-      steps:
+       steps:
         - run: 
            echo "text to output here" > ~/output.txt
         - persist_to_workspace:
@@ -41,14 +41,14 @@ jobs:
             paths:
               - output.txt
            
-      print_output_file:
+    print_output_file:
         build:
         docker:
           - image: circleci/node:13.8.0
-       steps:
+        steps:
            - attach_workspace:
                at: ~/
-            - run: cat ~/output.txt
+           - run: cat ~/output.txt
            
 
 workflows:
