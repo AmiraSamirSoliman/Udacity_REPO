@@ -73,11 +73,11 @@ jobs:
            - attach_workspace:
                at: ~/
            - run: cat ~/output.txt
-     Print_Env_variable:
+    Print_Env_variable:
         build:
         docker:
          - image: cimg/base:2020.01
-       steps:
+        steps:
          - checkout
          - run:
             command:
