@@ -28,6 +28,28 @@ jobs:
            echo 'World' >> run.sh
            chmod +x run.sh
         - run: sh ./run.sh
+        
+     save_hello_world_output:
+       build:
+       docker:
+         - image: circleci/node:13.8.0
+      steps:
+        - run: 
+           echo "text to output here" > ~/output.txt
+        - persist_to_workspace:
+            root: ~/
+            paths:
+              - output.txt
+           
+      print_output_file:
+        build:
+        docker:
+          - image: circleci/node:13.8.0
+       steps:
+           - attach_workspace:
+               at: ~/
+            - run: cat ~/output.txt
+           
 
 workflows:
   # Name the workflow "welcome"
@@ -39,3 +61,6 @@ workflows:
     # - print_world:
           #requires:
             #- print_hello
+      - print_output_file:
+          requires:
+            - save_hello_world_output
